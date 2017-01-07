@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="XTextView">
+        <attr name="fontFamily" format="enum">
+            <enum name="lato" value="1" />
+            <enum name="bebas" value="2" />
+            <enum name="us" value="3"/>
+            <enum name="champagne" value="4"/>
+            <enum name="openSans" value="5"/>
+            <enum name="neoSansPro" value="6" />
+            <enum name="roboto" value="7" />
+        </attr>
+
+        <attr name="fontStyle" format="enum">
+            <enum name="regular" value="0" />
+            <enum name="bold" value="1" />
+            <enum name="medium" value="2" />
+            <enum name="thin" value="3" />
+            <enum name="book" value="4" />
+            <enum name="light" value="5" />
+        </attr>
+    </declare-styleable>
+</resources>

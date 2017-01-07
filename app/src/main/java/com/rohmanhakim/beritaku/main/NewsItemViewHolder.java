@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.rohmanhakim.beritaku.R;
+import com.rohmanhakim.beritaku.custom.XTextView;
 import com.rohmanhakim.beritaku.model.NewsItem;
 
 import butterknife.BindView;
@@ -31,7 +32,7 @@ public class NewsItemViewHolder extends RecyclerView.ViewHolder {
     TextView textNewsfeedDate;
 
     @BindView(R.id.text_newsfeed_summary)
-    TextView textNewsfeedSummary;
+    XTextView textNewsfeedSummary;
 
     Context context;
 
