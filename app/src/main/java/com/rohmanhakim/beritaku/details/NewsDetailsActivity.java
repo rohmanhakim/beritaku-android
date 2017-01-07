@@ -2,6 +2,7 @@ package com.rohmanhakim.beritaku.details;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -91,7 +92,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
                     @Override
                     public void onNext(NewsDetails newsDetails) {
                         textAuthor.setText(newsDetails.author);
-                        textContent.setText(newsDetails.content);
+                        textContent.setText(Html.fromHtml(newsDetails.content));
                     }
                 });
     }
