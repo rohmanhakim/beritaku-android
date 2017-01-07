@@ -5,12 +5,12 @@ package com.rohmanhakim.beritaku.model;
  */
 public class NewsItem {
 
+    public String id;
     public String title;
     public String summary;
     public String date;
     public String author;
     public String imageUrl;
     public String source;
-
     public NewsItem(){}
 }

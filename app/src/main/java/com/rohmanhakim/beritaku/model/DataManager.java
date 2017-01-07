@@ -2,6 +2,7 @@ package com.rohmanhakim.beritaku.model;
 
 import com.rohmanhakim.beritaku.services.detik.DetikService;
 import com.rohmanhakim.beritaku.services.detik.response.Item;
+import com.rohmanhakim.beritaku.services.detik.response.NewsDetailsResponse;
 import com.rohmanhakim.beritaku.services.detik.response.NewsfeedResponse;
 import com.rohmanhakim.beritaku.utils.ConverterUtils;
 
@@ -45,9 +46,10 @@ public class DataManager {
                     @Override
                     public NewsItem call(Item item) {
                         NewsItem newsItem = new NewsItem();
+                        newsItem.id = item.link;
                         newsItem.title = item.title;
                         newsItem.summary = item.summary;
-                        newsItem.author = item.penulis;
+                        newsItem.author = item.reporter;
                         newsItem.date = item.date.publish;
                         newsItem.source = "Detik";
                         newsItem.imageUrl = ConverterUtils.getDetikLargeCoverImage(item.images.cover);
@@ -58,6 +60,19 @@ public class DataManager {
                     @Override
                     public Boolean call(NewsItem newsItem) {
                         return !newsItem.date.isEmpty();
+                    }
+                });
+    }
+
+    public Observable<NewsDetails> getDetikNewsDetails(String url){
+        return detikService.getNewsDetails(url)
+                .map(new Func1<NewsDetailsResponse, NewsDetails>() {
+                    @Override
+                    public NewsDetails call(NewsDetailsResponse newsDetailsResponse) {
+                        NewsDetails newsDetails = new NewsDetails();
+                        newsDetails.content = newsDetailsResponse.content.data;
+                        newsDetails.author = newsDetailsResponse.content.authors.reporter;
+                        return newsDetails;
                     }
                 });
     }

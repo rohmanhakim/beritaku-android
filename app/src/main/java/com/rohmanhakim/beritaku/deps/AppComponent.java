@@ -1,5 +1,6 @@
 package com.rohmanhakim.beritaku.deps;
 
+import com.rohmanhakim.beritaku.details.NewsDetailsActivity;
 import com.rohmanhakim.beritaku.main.MainActivity;
 import com.rohmanhakim.beritaku.model.DataManager;
 
@@ -14,5 +15,6 @@ import dagger.Component;
 @Component(modules = { AppModule.class, NetworkModule.class })
 public interface AppComponent {
     void inject(MainActivity mainActivity);
+    void inject(NewsDetailsActivity newsDetailsActivity);
     DataManager dataManager();
 }

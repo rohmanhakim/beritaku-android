@@ -1,5 +1,6 @@
 package com.rohmanhakim.beritaku.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,8 +19,11 @@ import android.view.MenuItem;
 
 import com.rohmanhakim.beritaku.BeritakuApp;
 import com.rohmanhakim.beritaku.R;
+import com.rohmanhakim.beritaku.custom.RecyclerItemClickListener;
+import com.rohmanhakim.beritaku.details.NewsDetailsActivity;
 import com.rohmanhakim.beritaku.model.DataManager;
 import com.rohmanhakim.beritaku.model.NewsItem;
+import com.rohmanhakim.beritaku.utils.ConstantUtils;
 
 import java.util.ArrayList;
 
@@ -69,6 +73,19 @@ public class MainActivity extends AppCompatActivity
         newsItemAdapter = new NewsItemAdapter(new ArrayList<NewsItem>());
         rvNewsfeed.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         rvNewsfeed.setAdapter(newsItemAdapter);
+        rvNewsfeed.addOnItemTouchListener(new RecyclerItemClickListener(MainActivity.this, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(MainActivity.this, NewsDetailsActivity.class);
+                intent.putExtra(ConstantUtils.IntentKey.INTENT_KEY_ID,(((NewsItemAdapter) rvNewsfeed.getAdapter()).getNewsItems().get(position).id));
+                intent.putExtra(ConstantUtils.IntentKey.INTENT_KEY_TITLE,((NewsItemAdapter) rvNewsfeed.getAdapter()).getNewsItems().get(position).title);
+                intent.putExtra(ConstantUtils.IntentKey.INTENT_KEY_SOURCE,((NewsItemAdapter) rvNewsfeed.getAdapter()).getNewsItems().get(position).source);
+                intent.putExtra(ConstantUtils.IntentKey.INTENT_KEY_AUTHOR,((NewsItemAdapter) rvNewsfeed.getAdapter()).getNewsItems().get(position).author);
+                intent.putExtra(ConstantUtils.IntentKey.INTENT_KEY_DATE,((NewsItemAdapter) rvNewsfeed.getAdapter()).getNewsItems().get(position).date);
+                intent.putExtra(ConstantUtils.IntentKey.INTENT_KEY_IMAGE_URL,((NewsItemAdapter) rvNewsfeed.getAdapter()).getNewsItems().get(position).imageUrl);
+                startActivity(intent);
+            }
+        }));
 
         mainPresenter = new MainPresenter(dataManager,this);
 
