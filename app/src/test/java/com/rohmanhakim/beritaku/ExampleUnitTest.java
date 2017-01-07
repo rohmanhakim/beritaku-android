@@ -1,4 +1,4 @@
-package com.rohmanhakim.beritaku_android;
+package com.rohmanhakim.beritaku;
 
 import org.junit.Test;
 
