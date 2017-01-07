@@ -50,20 +50,20 @@ public class XTextView extends TextView{
                         break;
                 }
                 break;
-            // font family LATO
-            case XTextViewAttr.lato:
+            // font family PT SERIF
+            case XTextViewAttr.ptserif:
                 switch (fontStyle) {
                     case XTextViewAttr.regular:
-                        fontName = "fonts/lato-regular.ttf";
+                        fontName = "fonts/PTSerif-Regular.ttf";
                         break;
                     case XTextViewAttr.bold:
-                        fontName = "fonts/lato-bold.ttf";
+                        fontName = "fonts/PTSerif-Bold.ttf";
                         break;
                     case XTextViewAttr.medium:
-                        fontName = "fonts/lato-medium.ttf";
+                        fontName = "fonts/PTSerif-Bold.ttf";
                         break;
                     case XTextViewAttr.thin:
-                        fontName = "fonts/lato-thin.ttf";
+                        fontName = "fonts/PTSerif-Regular.ttf";
                         break;
                 }
                 break;
@@ -137,7 +137,7 @@ public class XTextView extends TextView{
 
     public static class XTextViewAttr {
         // font family
-        public static final int lato = 1;
+        public static final int ptserif = 1;
         public static final int bebas = 2;
         public static final int us = 3;
         public static final int champagne = 4;

@@ -10,7 +10,9 @@
     <dimen name="newsfeed_default_margin">12dp</dimen>
     <dimen name="newsfeed_title_container_height">96dp</dimen>
     <dimen name="header_small_margin">8dp</dimen>
-    <dimen name="newsfeed_title_text_size">20sp</dimen>
+    <dimen name="newsfeed_title_text_size">22sp</dimen>
     <dimen name="newsfeed_container_bottom_margin">36dp</dimen>
-    <dimen name="newsfeed_content_text_size">12sp</dimen>
+    <dimen name="newsfeed_content_text_small">12sp</dimen>
+    <dimen name="newsfeed_content_text_medium">15sp</dimen>
+    <dimen name="newsfeed_content_text_large">17sp</dimen>
 </resources>
