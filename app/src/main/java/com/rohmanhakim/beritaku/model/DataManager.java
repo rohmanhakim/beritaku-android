@@ -53,6 +53,12 @@ public class DataManager {
                         newsItem.imageUrl = ConverterUtils.getDetikLargeCoverImage(item.images.cover);
                         return newsItem;
                     }
+                })
+                .filter(new Func1<NewsItem, Boolean>() {
+                    @Override
+                    public Boolean call(NewsItem newsItem) {
+                        return !newsItem.date.isEmpty();
+                    }
                 });
     }
 }

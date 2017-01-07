@@ -32,12 +32,14 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, MainView{
 
     @Inject
     DataManager dataManager;
 
     NewsItemAdapter newsItemAdapter;
+
+    MainPresenter mainPresenter;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -68,26 +70,9 @@ public class MainActivity extends AppCompatActivity
         rvNewsfeed.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         rvNewsfeed.setAdapter(newsItemAdapter);
 
-        dataManager.getDetikNewsfeed()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<NewsItem>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.d("getDetikNews","Completed");
-                    }
+        mainPresenter = new MainPresenter(dataManager,this);
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d("getDetikNews",e.getMessage());
-                    }
-
-                    @Override
-                    public void onNext(NewsItem newsItem) {
-                        Log.d("getDetikNews","Title : " + newsItem.title);
-                        ((NewsItemAdapter) rvNewsfeed.getAdapter()).add(newsItem);
-                    }
-                });
+        mainPresenter.fetchNewsFromDetik();
     }
 
     @Override
@@ -115,5 +100,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFinishLoadingNews(NewsItem newsItem) {
+        ((NewsItemAdapter) rvNewsfeed.getAdapter()).add(newsItem);
     }
 }
