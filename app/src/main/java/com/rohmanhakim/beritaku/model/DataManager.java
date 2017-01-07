@@ -3,6 +3,7 @@ package com.rohmanhakim.beritaku.model;
 import com.rohmanhakim.beritaku.services.detik.DetikService;
 import com.rohmanhakim.beritaku.services.detik.response.Item;
 import com.rohmanhakim.beritaku.services.detik.response.NewsfeedResponse;
+import com.rohmanhakim.beritaku.utils.ConverterUtils;
 
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class DataManager {
                         newsItem.author = item.penulis;
                         newsItem.date = item.date.publish;
                         newsItem.source = "Detik";
-                        newsItem.imageUrl = item.images.cover;
+                        newsItem.imageUrl = ConverterUtils.getDetikLargeCoverImage(item.images.cover);
                         return newsItem;
                     }
                 });

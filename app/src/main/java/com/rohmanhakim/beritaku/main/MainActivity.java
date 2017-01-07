@@ -3,6 +3,8 @@ package com.rohmanhakim.beritaku.main;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -19,8 +21,12 @@ import com.rohmanhakim.beritaku.R;
 import com.rohmanhakim.beritaku.model.DataManager;
 import com.rohmanhakim.beritaku.model.NewsItem;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -31,27 +37,40 @@ public class MainActivity extends AppCompatActivity
     @Inject
     DataManager dataManager;
 
+    NewsItemAdapter newsItemAdapter;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
+    @BindView(R.id.nav_view)
+    NavigationView navigationView;
+    @BindView(R.id.rv_newsfeed)
+    RecyclerView rvNewsfeed;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ((BeritakuApp) getApplication()).getAppComponent().inject(this);
+        ButterKnife.bind(this);
+
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ((BeritakuApp) getApplication()).getAppComponent().inject(this);
+        newsItemAdapter = new NewsItemAdapter(new ArrayList<NewsItem>());
+        rvNewsfeed.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        rvNewsfeed.setAdapter(newsItemAdapter);
 
         dataManager.getDetikNewsfeed()
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<NewsItem>() {
                     @Override
                     public void onCompleted() {
@@ -66,6 +85,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onNext(NewsItem newsItem) {
                         Log.d("getDetikNews","Title : " + newsItem.title);
+                        ((NewsItemAdapter) rvNewsfeed.getAdapter()).add(newsItem);
                     }
                 });
     }
