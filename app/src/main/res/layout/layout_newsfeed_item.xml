@@ -10,7 +10,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitStart"
-            android:src="@drawable/sample_cover_image"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"/>
         <LinearLayout
@@ -30,7 +29,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="3"
-                    android:text="11 Media yang Diblokir Kemenkominfo Tak Terdaftar di Dewan Pers"
                     android:textColor="#ffffff"
                     android:layout_alignParentBottom="true"
                     android:textSize="@dimen/newsfeed_title_text_size"
@@ -53,7 +51,6 @@
                         android:id="@+id/text_newsfeed_source"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Detik"
                         android:textSize="@dimen/newsfeed_content_text_size"
                         android:textColor="#005689"/>
                     <TextView
@@ -68,7 +65,6 @@
                         android:id="@+id/text_newsfeed_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2 Januari 2016 22:00 WIB"
                         android:textSize="@dimen/newsfeed_content_text_size"
                         android:textColor="#767676"/>
                 </LinearLayout>
@@ -78,8 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:textSize="@dimen/newsfeed_content_text_size"
-                    android:textColor="#333333"
-                    android:text="Kemenkominfo memblokir 11 situs media online yang dianggap mengandung konten negatif. Dewan Pers menyebut situs-situs itu tidak terdaftar sebagai media."/>
+                    android:textColor="#333333" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
