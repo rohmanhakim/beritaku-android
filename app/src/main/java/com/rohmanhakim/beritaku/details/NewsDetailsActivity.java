@@ -59,6 +59,8 @@ public class NewsDetailsActivity extends AppCompatActivity {
         ((BeritakuApp) getApplication()).getAppComponent().inject(this);
         ButterKnife.bind(this);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
             id = bundle.getString(ConstantUtils.IntentKey.INTENT_KEY_ID);
@@ -67,6 +69,10 @@ public class NewsDetailsActivity extends AppCompatActivity {
             date = bundle.getString(ConstantUtils.IntentKey.INTENT_KEY_DATE);
             imageUrl = bundle.getString(ConstantUtils.IntentKey.INTENT_KEY_IMAGE_URL);
             source = bundle.getString(ConstantUtils.IntentKey.INTENT_KEY_SOURCE);
+        }
+
+        if(source.equals(ConstantUtils.NewsSource.NEWS_SOURCE_DETIK)){
+            getSupportActionBar().setTitle("Detik.com");
         }
 
         textSource.setText(source);

@@ -11,7 +11,7 @@
             android:id="@+id/img_cover"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="fitStart"
+            android:scaleType="fitCenter"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"/>
         <LinearLayout

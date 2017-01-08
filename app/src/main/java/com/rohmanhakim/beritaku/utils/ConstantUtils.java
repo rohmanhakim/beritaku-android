@@ -4,6 +4,9 @@ package com.rohmanhakim.beritaku.utils;
  * Created by rohmanhakim <rohmanhakim@live.com> on 1/7/17 21:44.
  */
 public class ConstantUtils {
+    public class NewsSource {
+        public static final String NEWS_SOURCE_DETIK = "detik";
+    }
     public class IntentKey {
         public static final String INTENT_KEY_ID = "id";
         public static final String INTENT_KEY_TITLE = "title";
