@@ -22,7 +22,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public class NewsDetailsActivity extends AppCompatActivity {
+public class NewsDetailsActivity extends AppCompatActivity implements NewsDetailsView{
 
     @BindView(R.id.text_newsfeed_title)
     TextView textTitle;
@@ -48,6 +48,8 @@ public class NewsDetailsActivity extends AppCompatActivity {
     String date;
     String imageUrl;
     String source;
+
+    NewsDetailsPresenter presenter;
 
     @Inject
     DataManager dataManager;
@@ -81,25 +83,14 @@ public class NewsDetailsActivity extends AppCompatActivity {
         textDate.setText(date);
         Glide.with(NewsDetailsActivity.this).load(imageUrl).into(imgCover);
 
-        dataManager.getDetikNewsDetails(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<NewsDetails>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.d("getDetikDetails","Completed");
-                    }
+        presenter = new NewsDetailsPresenter(dataManager,this);
+        presenter.getNewsDetailsFromDetik(id);
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d("getDetikDetails",e.getMessage());
-                    }
+    }
 
-                    @Override
-                    public void onNext(NewsDetails newsDetails) {
-                        textAuthor.setText(newsDetails.author);
-                        textContent.setText(Html.fromHtml(newsDetails.content));
-                    }
-                });
+    @Override
+    public void onFinishedLoadingNewsContent(String author, String content) {
+        textAuthor.setText(author);
+        textContent.setText(Html.fromHtml(content));
     }
 }
