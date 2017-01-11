@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity
 
         mainPresenter = new MainPresenter(dataManager,this);
 
-        mainPresenter.fetchNewsFromDetik();
+        mainPresenter.fetchNews();
     }
 
     @Override

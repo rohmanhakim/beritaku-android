@@ -7,12 +7,12 @@ import java.util.List;
 /**
  * Created by rohmanhakim <rohmanhakim@live.com> on 1/7/17 17:06.
  */
-public class NewsfeedResponse {
+public class DetikNewsfeedResponse {
     @SerializedName("account_code")
     public String accountCode;
 
     @SerializedName("item")
-    public List<Item> item;
+    public List<DetikNewsItem> item;
 
     @SerializedName("last_date")
     public String lastDate;

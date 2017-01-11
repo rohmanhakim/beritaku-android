@@ -4,7 +4,7 @@ package com.rohmanhakim.beritaku.services.detik.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Item {
+public class DetikNewsItem {
 
     @SerializedName("date")
     @Expose

@@ -4,12 +4,10 @@ import android.content.Context;
 import android.util.Base64;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.rohmanhakim.beritaku.services.detik.response.NewsDetailsResponse;
-import com.rohmanhakim.beritaku.services.detik.response.NewsfeedResponse;
+import com.rohmanhakim.beritaku.services.detik.response.DetikNewsfeedResponse;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -33,7 +31,7 @@ public interface DetikService {
     int TIMEOUT = 2;
 
     @GET("api/newsfeed")
-    Observable<NewsfeedResponse> getNewsfeed(@Query("compress") int compress, @Query("min") int min, @Query("kanal") int kanal, @Query("page") int page);
+    Observable<DetikNewsfeedResponse> getNewsfeed(@Query("compress") int compress, @Query("min") int min, @Query("kanal") int kanal, @Query("page") int page);
 
     @GET("api/news_detail")
     Observable<NewsDetailsResponse> getNewsDetails(@Query("url") String url);

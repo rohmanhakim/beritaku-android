@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.rohmanhakim.beritaku.model.DataManager;
 import com.rohmanhakim.beritaku.services.detik.DetikService;
+import com.rohmanhakim.beritaku.services.tribun.TribunService;
 
 import java.util.concurrent.TimeUnit;
 
@@ -45,5 +46,12 @@ public class NetworkModule {
     @SuppressWarnings("unused")
     public DetikService providesDetikService(Context context, Gson gson){
         return DetikService.Builder.build(context,gson);
+    }
+
+    @Provides
+    @Singleton
+    @SuppressWarnings("unused")
+    public TribunService providesTribunService(Context context, Gson gson){
+        return TribunService.Builder.build(context,gson);
     }
 }

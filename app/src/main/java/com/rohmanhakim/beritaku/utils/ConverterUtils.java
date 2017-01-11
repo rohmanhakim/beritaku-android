@@ -9,7 +9,7 @@ import java.util.Map;
 public class ConverterUtils {
     public static String getDetikLargeCoverImage(String imageUrl){
         String[] buffers = imageUrl.split("\\?");
-        return buffers[0] + "?width=480";
+        return buffers[0] + "?w=480";
     }
 
     public static Map<String, String> getQueryMap(String query)

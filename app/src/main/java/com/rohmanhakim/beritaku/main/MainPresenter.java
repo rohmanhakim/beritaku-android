@@ -43,4 +43,26 @@ public class MainPresenter {
                     }
                 });
     }
+
+    public void fetchNews(){
+        dataManager.getAllNewsfeed()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<NewsItem>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.d("getDetikNews","Completed");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("getDetikNews",e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(NewsItem newsItem) {
+                        view.onFinishLoadingNews(newsItem);
+                    }
+                });
+    }
 }

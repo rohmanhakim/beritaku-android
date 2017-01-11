@@ -6,6 +6,7 @@ package com.rohmanhakim.beritaku.utils;
 public class ConstantUtils {
     public class NewsSource {
         public static final String NEWS_SOURCE_DETIK = "detik";
+        public static final String NEWS_SOURCE_TRIBUN = "tribun";
     }
     public class IntentKey {
         public static final String INTENT_KEY_ID = "id";
